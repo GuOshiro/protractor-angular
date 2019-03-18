@@ -1,0 +1,24 @@
+<div *ngIf="(comments$ | async) as comments">
+    <ul class="list-unstyled comment-list">
+        <li *ngFor="let comment of comments">
+            <a class="text-dark font-weight-bold mr-1" [routerLink]="['/user', comment.userName]">
+                {{ comment.userName }}
+            </a>
+            <em>{{ comment.date | date:'dd-MM-yyyy HH:mm' }}</em>
+            <p class="break-word mb-2">{{ comment.text }}</p>
+        </li>
+    </ul>
+    <div class="mt-4">
+        <form [formGroup]="commentForm" (submit)="save()">
+            <div class="input-group">
+                <textarea formControlName="comment" class="form-control"></textarea>
+                <div class="input-group-append">
+                    <button [disabled]="commentForm.invalid" type="submit"
+                        id="publish" class="btn btn-primary pull-left">Publish</button>
+                </div>
+            </div>
+            <ap-vmessage text="Maximun size allowed is 300" *ngIf="commentForm.get('comment').errors?.maxlength">
+            </ap-vmessage>
+        </form>
+    </div>
+</div>
