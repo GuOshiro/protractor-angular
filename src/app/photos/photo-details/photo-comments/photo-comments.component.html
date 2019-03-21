@@ -1,6 +1,6 @@
 <div *ngIf="(comments$ | async) as comments">
     <ul class="list-unstyled comment-list">
-        <li *ngFor="let comment of comments">
+        <li *ngFor="let comment of comments" id="comments">
             <a class="text-dark font-weight-bold mr-1" [routerLink]="['/user', comment.userName]">
                 {{ comment.userName }}
             </a>
@@ -11,10 +11,10 @@
     <div class="mt-4">
         <form [formGroup]="commentForm" (submit)="save()">
             <div class="input-group">
-                <textarea formControlName="comment" class="form-control"></textarea>
+                <textarea formControlName="comment" name="comment" class="form-control"></textarea>
                 <div class="input-group-append">
-                    <button [disabled]="commentForm.invalid" type="submit"
-                        id="publish" class="btn btn-primary pull-left">Publish</button>
+                    <button [disabled]="commentForm.invalid" type="submit" id="publish"
+                        class="btn btn-primary pull-left">Publish</button>
                 </div>
             </div>
             <ap-vmessage text="Maximun size allowed is 300" *ngIf="commentForm.get('comment').errors?.maxlength">

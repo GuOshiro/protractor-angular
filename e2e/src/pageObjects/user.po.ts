@@ -21,24 +21,21 @@ export class UserPage {
 
 
     verifyButtonEnabled() {
-        return element(by.buttonText('Publish')).isEnabled();
+        return element(by.id('publish'));
     }
 
     commentImage(comment) {
-        element(by.css('input[formControlName=comment]')).sendKeys(comment);
+        element(by.css('textarea[formControlName=comment]')).sendKeys(comment);
         element(by.id('publish')).click();
     }
 
     getImageUrl() {
-        let imageID;
-        browser.getCurrentUrl().then(url => imageID = url.split('/#/p/')[1]);
-        console.log(imageID);
-        return imageID;
+        browser.getCurrentUrl().then(url => url.split('/#/p/')[1]);
     }
 
     verifyComment() {
-        const texts = element(by.model('comment.text'));
-        console.log(texts);
+        const comments = element.all(by.id('comments')).all(by.css('p'));
+        return comments.get(0).getText();
     }
 
 }
