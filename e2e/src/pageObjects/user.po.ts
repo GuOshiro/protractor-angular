@@ -36,4 +36,14 @@ export class UserPage {
         return comments.get(0).getText();
     }
 
+    pegarIdDasFotos() {
+        let value;
+        value = element.all(by.css('.list-unstyled li div')).reduce(function (acc, elem) {
+            return elem.getText().then(function (text) {
+                return acc + text + ' ';
+            });
+        }, '');
+        console.log(value);
+    }
+
 }
