@@ -1,27 +1,27 @@
 import { browser, by, element } from 'protractor';
 
 export class HomePage {
-  navigateToSignIn() {
+  navegarParaSignIn() {
     return browser.get('/#/home');
   }
 
-  navigateToSignUp() {
+  navegarParaSignUp() {
     return browser.get('/#/home/signup');
   }
 
-  getParagraphText() {
+  pegarParagrafoDoLogin() {
     return element(by.css('.text-center')).getText();
   }
 
-  verifyUserNameInput() {
+  passarParametroNoInputUserName() {
     element(by.css('input[formControlName=userName]')).sendKeys('flavio');
   }
 
-  verifyPasswordInput() {
+  passarParametroNoInputPassword() {
     element(by.css('input[formControlName=password]')).sendKeys('123');
   }
 
-  submitLogin() {
+  logar() {
     return element(by.css('.btn-primary'));
   }
 

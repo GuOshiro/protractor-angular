@@ -1,39 +1,37 @@
 import { browser, by, element } from 'protractor';
 
 export class UserPage {
-    navigateTo() {
+    navegarParaHome() {
         return browser.get('/#/user/flavio');
     }
 
-    navigateToImage(imageText: string) {
+    navegarParaImagens(imageText: string) {
         element(by.tagName('img')).click();
     }
 
-    navigateToSpecificImage(imageID) {
+    navegarParaImagemEspecifica(imageID) {
         return browser.get(`/#/p/${imageID}`);
     }
 
-
-    verifyInput(imageText) {
+    preencherInputDePesquisa(imageText) {
         const input = element(by.id('searchImage'));
         input.sendKeys(imageText);
     }
 
-
-    verifyButtonEnabled() {
+    pegarBotaoDePesquisa() {
         return element(by.id('publish'));
     }
 
-    commentImage(comment) {
+    comentarNaImagem(comment) {
         element(by.css('textarea[formControlName=comment]')).sendKeys(comment);
         element(by.id('publish')).click();
     }
 
-    getImageUrl() {
+    pegarUrlDaImagemEspecifica() {
         browser.getCurrentUrl().then(url => url.split('/#/p/')[1]);
     }
 
-    verifyComment() {
+    verificarSeFoiComentadoFoiPublicado() {
         const comments = element.all(by.id('comments')).all(by.css('p'));
         return comments.get(0).getText();
     }
