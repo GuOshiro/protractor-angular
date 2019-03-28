@@ -43,7 +43,6 @@ export class UserPage {
                 return acc + text + ' ';
             });
         }, '');
-        console.log(value);
     }
 
 }
