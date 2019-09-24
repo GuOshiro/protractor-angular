@@ -1,35 +1,29 @@
-import { HomePage } from './pageObjects/home.po';
-import { SignupPage } from './pageObjects/signup.po';
+import { SigninPage } from './pageObjects/home/signin.po';
+import { SignupPage } from './pageObjects/home/signup.po';
 
-describe('page de signin e signup', () => {
-  let homePage: HomePage;
+describe('Testando tela home', () => {
+  let signinPage: SigninPage;
   let signupPage: SignupPage;
 
   beforeEach(() => {
-    homePage = new HomePage();
+    signinPage = new SigninPage();
     signupPage = new SignupPage();
   });
 
-  it('Deve mostrar a label Login', () => {
-    homePage.navegarParaSignIn();
-    expect(homePage.pegarParagrafoDoLogin()).toEqual('Login');
+  it('Deve ir para home', () => {
+    signinPage.acessarHome();
   });
 
-  it('deve conter os inputs de senha e login', () => {
-    homePage.navegarParaSignIn();
-    expect(homePage.passarParametroNoInputUserName());
-    expect(homePage.passarParametroNoInputPassword());
+  it('Deve verificar url', () => {
+    expect(signinPage.verificarUrl()).toEqual('http://localhost:4200/#/home');
   });
 
-  it('deve funcionar a função de submit', () => {
-    homePage.navegarParaSignIn();
-    expect(homePage.logar().click());
+  it('Deve fazer login', () => {
+    expect(signinPage.pegarInput('userName', 'flavio'))
+    expect(signinPage.pegarInput('password', '123'))
+    expect(signinPage.pegarBotaoLogin().click())
   });
 
-  it('deve navegar para página de sign up e cadastrar um usuário', () => {
-    signupPage.navegarParaSignUp();
-    expect(signupPage.inserirValoresNosInputsDeCadastro());
-    expect(signupPage.pegarBotaoDeSubmeterFormulario().submit());
-  });
+ 
 
 });

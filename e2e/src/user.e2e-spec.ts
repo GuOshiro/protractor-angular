@@ -1,8 +1,8 @@
 import { UserPage } from './pageObjects/user.po';
-import { HomePage } from './pageObjects/home.po';
+import { SigninPage } from './pageObjects/home/signin.po';
 import { browser } from 'protractor';
 
-let homePage: HomePage;
+let homePage: SigninPage;
 let userPage: UserPage;
 const comentario = 'Essa imagem é muito de boa!';
 const tituloDaImagem = 'Farol iluminado';
@@ -21,7 +21,7 @@ describe('User Page', () => {
 
     beforeEach(() => {
         userPage = new UserPage();
-        homePage = new HomePage();
+        homePage = new SigninPage();
     });
 
     it('deve logar no sistema', () => {
