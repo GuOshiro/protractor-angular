@@ -24,5 +24,8 @@ exports.config = {
       project: require('path').join(__dirname, './tsconfig.e2e.json')
     });
     jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
+    by.addLocator('formControlName', (valor)=> {
+      return document.querySelectorAll(`[formControlName="${valor}"]`)
+    })
   }
 };
