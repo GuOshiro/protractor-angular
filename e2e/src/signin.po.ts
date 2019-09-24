@@ -7,4 +7,12 @@ export class SigninPage {
   verificarUrl() {
     return browser.getCurrentUrl();
   }
+
+  pegarInput(formControlName, valor){
+    return element(by.css(`input[formControlName="${formControlName}"]`)).sendKeys(valor);
+  }
+
+  pegarBotaoLogin(){
+    return element(by.buttonText('login'))
+  }
 }
